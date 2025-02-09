@@ -1,0 +1,1 @@
+dataPath = "/media/pool1/chatgenerator"
