@@ -19,14 +19,22 @@ def _getOllamaHost():
         host = host.strip()
         if not host.startswith("http"):
             host = f"http://{host}"
-            
-        response = requests.get(f"{host}/api/version")
-        if response.status_code == 200:
-            version = response.json()["version"]
-            print(f"Found Ollama API version {version}")
-            break
-        else:
-            print(f"API request failed with code: {response.status_code}, use anyway? (y/n)")
+
+        fail = False
+        try:
+            response = requests.get(f"{host}/api/version",timeout=10)
+            if response.status_code == 200:
+                version = response.json()["version"]
+                print(f"Found Ollama API version {version}")
+                break
+            else:
+                status = response.status_code
+                fail = True
+        except:
+            status = "timeout"
+            fail = True
+        if fail:
+            print(f"API request failed with code: {status}, use anyway? (y/n)")
             choice = input()
             if choice.lower() == "y":
                 break
