@@ -1,7 +1,7 @@
 import numpy as np
 import datasets
 import os
-from .common import dataPath
+from .common import chatgenpath
 from tqdm import tqdm
 import json
 
@@ -9,10 +9,10 @@ import json
 
 def listSubjects():
 
-    if not os.path.isdir(dataPath):
-        os.makedirs(dataPath)
+    if not os.path.isdir(chatgenpath):
+        os.makedirs(chatgenpath)
 
-    subjectsFile = f"{dataPath}/subjects.json"
+    subjectsFile = f"{chatgenpath}/subjects.json"
 
     if not os.path.isfile(subjectsFile):
 

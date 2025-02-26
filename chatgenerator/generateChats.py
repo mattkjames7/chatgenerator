@@ -1,14 +1,14 @@
 from .generateMessages import generateMessages
 from .listSubjects import listSubjects
 import hashlib
-from .common import dataPath
+from .common import chatgenpath
 from random import choice,randint
 import os
 import json
 
 def generateChats(n=1000,count=50):
 
-    chatDir = f"{dataPath}/chats"
+    chatDir = f"{chatgenpath}/chats"
     if not os.path.isdir(chatDir):
         os.makedirs(chatDir)
 
