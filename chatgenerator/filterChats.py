@@ -24,9 +24,9 @@ def filterChats(chats: List[dict],n: int = 2) -> List[dict]:
     out = []
     for chat in tqdm(chats,desc="Filtering chats"):
         keep = True
-        if len(chat["messages"]) < n + 1:
+        if len(chat["messages"]) <= 2:
             continue
-        for i in range(n):
+        for i in range(min(n,len(chat["messages"]))):
             message = chat["messages"][i+1]["content"]
             # replace this with something better
             if "Me:" in message and "Friend:" in message:
