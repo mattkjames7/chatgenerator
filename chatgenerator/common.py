@@ -12,7 +12,10 @@ if not os.path.isdir(chatgenpath):
     os.makedirs(chatgenpath)
 
 
-def _getOllamaHost():
+def _getOllamaHost() -> str:
+    """
+    Take user input to get ollama host address.
+    """
 
     while True:
         host = input("Enter Ollama host address (include port, usually 11434): ")
@@ -41,7 +44,10 @@ def _getOllamaHost():
     return host
 
 
-def getConfig():
+def getConfig() -> dict:
+    """
+    Return configuration dict. Currently only contains host address.
+    """
 
     configPath = f"{chatgenpath}/config.json"
     if not os.path.isfile(configPath):

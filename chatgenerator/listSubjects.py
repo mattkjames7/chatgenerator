@@ -4,11 +4,24 @@ import os
 from .common import chatgenpath
 from tqdm import tqdm
 import json
+from typing import List
 
 
+def listSubjects() -> List[str]:
+    """
+    Returns a list of subjects which the agents can chat about.
+    The list originates from wikipedia, and is simply a list of 
+    all of the english wikipedias page titles.
 
-def listSubjects():
+    Beware - the initial download and reading of the wikipedia data
+    takes ages and uses a bit of space.
 
+    Returns
+    =======
+    subjects : list
+        list of subject strings
+    
+    """
     if not os.path.isdir(chatgenpath):
         os.makedirs(chatgenpath)
 

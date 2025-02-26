@@ -1,5 +1,6 @@
 import requests
 from .common import config
+from typing import List,Tuple,Optional
 
 SYSTEM_PROMPT = """\
 You are a human having a conversation with a friend.
@@ -13,7 +14,20 @@ You are a human having a conversation with a friend.
 
 The topic you are discussing is: """
 
-def getPrompt(subject):
+def getPrompt(subject: str) -> dict:
+    """
+    Returns the system prompt in the form of a dict message.
+
+    Inputs
+    ======
+    subject : str
+        Topic of discussion
+
+    Returns
+    =======
+    message : dict
+        system prompt message
+    """
     message = {
         "role": "system",
         "content": SYSTEM_PROMPT + subject
@@ -21,7 +35,7 @@ def getPrompt(subject):
     return message
 
 
-def _requestDataOllama(messages):
+def _requestDataOllama(messages: List[dict]) -> Tuple[str,dict,None]:
 
     url = f"http://{config['host']}/api/chat"
 
@@ -37,7 +51,26 @@ def _requestDataOllama(messages):
     return url,data,headers
 
 
-def postRequest(url, data, headers, attempts=3):
+def postRequest(url: str, data: dict, headers: dict|None, attempts: int = 3) -> dict:
+    """
+    Makes multiple attempts to request the next message from the ollama api.
+
+    Inputs
+    ======
+    url : str
+        ollama host address
+    data : dict
+        request data
+    headers : dict|None
+        request headers
+    attempts : int
+        Number of times to attempt the request
+
+    Returns
+    =======
+    json : str
+        response json
+    """
     for attempt in range(1, attempts + 1):
         try:
             response = requests.post(url, json=data, headers=headers, timeout=30 * 60)
@@ -57,7 +90,21 @@ def postRequest(url, data, headers, attempts=3):
 
 
 
-def requestChat(messages=None):
+def requestChat(messages: dict) -> dict:
+    """
+    Takes in any existing chat messages and makes the request to complete
+    the chat from the ollama api.
+
+    Inputs
+    ======
+    massages : dict
+        dictionary of existing conversation
+
+    Returns
+    =======
+    message : dict
+        New messsage
+    """
 
     url, data, headers = _requestDataOllama(messages)
 

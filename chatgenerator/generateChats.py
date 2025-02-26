@@ -6,7 +6,18 @@ from random import choice,randint
 import os
 import json
 
-def generateChats(n=1000,count=50):
+def generateChats(n: int = 1000, count: int = 50) -> None:
+    """
+    This will generate `n` chats, each with `count` messages.
+    
+    Inputs
+    ======
+    n : int
+        Number of chats to generate
+    count : int
+        Number of messages in each chat
+    """
+
 
     chatDir = f"{chatgenpath}/chats"
     if not os.path.isdir(chatDir):

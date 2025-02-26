@@ -3,9 +3,25 @@ from tqdm import tqdm
 from copy import deepcopy
 
 
-def generateMessages(subject,count=50):
+def generateMessages(subject: str, count: int = 50) -> dict:
+    """
+    Generate messages about a specific subject. Messages are generated one by
+    one, where the role is reversed each time.
 
+    Inputs
+    ======
+    subject : str
+        Topic of discussion
+    count : int
+        Number of messages to generate
+
+    Returns
+    =======
+    chat : dict
+        full conversation, starting with system prompt, followed by 
+        generated user and assistant messages.
     
+    """
     chats = [[getPrompt(subject)],[getPrompt(subject)]]
 
     for i in tqdm(range(0,count)):
