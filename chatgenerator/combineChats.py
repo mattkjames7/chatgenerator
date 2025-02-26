@@ -3,7 +3,7 @@ from .collectChats import collectChats
 from .filterChats import filterChats
 import json
 
-def combineChats(filter=True,n=2):
+def combineChats(filter: bool = True, n: int = 2) -> None:
     """
     Combines and optionally filters all of the chats and saves them to a single file.
 
