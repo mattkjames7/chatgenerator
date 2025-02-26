@@ -1,5 +1,6 @@
 import requests
 import textwrap
+from .common import config
 
 SYSTEM_PROMPT = """\
 You are a human having a conversation with a friend.
@@ -23,7 +24,7 @@ def getPrompt(subject):
 
 def _requestDataOllama(messages):
 
-    url = "http://192.168.0.138/api/chat"
+    url = f"http://{config['host']}/api/chat"
 
     data = {
         "model": "llama3.2:3b",

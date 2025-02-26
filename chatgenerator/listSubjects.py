@@ -15,7 +15,7 @@ def listSubjects():
     subjectsFile = f"{chatgenpath}/subjects.json"
 
     if not os.path.isfile(subjectsFile):
-
+        print("This bit takes ages, sorry...")
         data = datasets.load_dataset("wikimedia/wikipedia","20231101.en")
 
         subjects = [data["train"][i]["title"] for i in tqdm(range(0,len(data["train"])))]
