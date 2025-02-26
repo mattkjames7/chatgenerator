@@ -1,3 +1,4 @@
 tqdm
 datasets
 requests
+huggingface_hub
