@@ -1,5 +1,4 @@
 import requests
-import textwrap
 from .common import config
 
 SYSTEM_PROMPT = """\

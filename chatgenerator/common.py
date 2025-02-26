@@ -16,7 +16,10 @@ def _getOllamaHost():
 
     while True:
         host = input("Enter Ollama host address (include port, usually 11434): ")
-
+        host = host.strip()
+        if not host.startswith("http"):
+            host = f"http://{host}"
+            
         response = requests.get(f"{host}/api/version")
         if response.status_code == 200:
             version = response.json()["version"]
