@@ -34,5 +34,5 @@ def filterChats(chats: List[dict],n: int = 2) -> List[dict]:
                 break
         if keep:
             out.append(chat)
-
+    print(f"Filtered {len(chats)} down to {len(out)} chats")
     return out

@@ -22,7 +22,9 @@ def collectChats() -> List[dict]:
     print(f"Found {len(files)} files")
 
     chats = []
-    for file,filePath in tqdm(zip(files,filePaths), desc="Reading chats"):
+    for i in tqdm(range(len(files)), desc="Reading chats"):
+        file = files[i]
+        filePath = filePaths[i]
         key = file.split(".")[0]
         with open(filePath,"r") as f:
             messages = json.load(f)
